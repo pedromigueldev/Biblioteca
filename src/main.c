@@ -8,20 +8,20 @@
 
 char** biblioteca_splitline(char* line)
 {
-    char* line_copy = strdup(line);
-    
+
     int buffer_size = BIBLIOTECA_ARGS_BUFFER, position = 0;
     char** args = malloc(sizeof(char*) * buffer_size);
-    char*  arg;
+    char*  arg, *arg_rest;
+
+    char* line_copy = strdup(line);
+    arg_rest = line_copy;
 
     if (args == NULL) {
         fprintf(stderr, "Failed to create args buffer\n");
         exit(EXIT_FAILURE);
     }
 
-    arg = strtok(line, BIBLIOTECA_ARGS_DELIMITER);
-
-    while (arg != NULL) {
+    while ((arg = strtok_r(arg_rest, BIBLIOTECA_ARGS_DELIMITER, &arg_rest))) {
         args[position] = arg;
         position++;
 
@@ -34,7 +34,6 @@ char** biblioteca_splitline(char* line)
                 exit(EXIT_FAILURE);
             }
         }
-        arg = strtok(NULL, BIBLIOTECA_ARGS_DELIMITER);
     }
     args[position] = NULL;
     return args;
@@ -89,6 +88,8 @@ int biblioteca_main()
         printf("is true\n");
         line = biblioteca_getline();
         args = biblioteca_splitline(line);
+
+        printf("%s: %s", args[0], args[1]);
     }
 
     free(line);
