@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "../includes/common.h"
 #include "../includes/functions.h"
 
 #define BIBLIOTECA_LINE_BUFFER 1024
