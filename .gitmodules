@@ -1,0 +1,3 @@
+[submodule "includes/bshell"]
+	path = includes/bshell
+	url = https://github.com/pedromigueldev/bshell/
