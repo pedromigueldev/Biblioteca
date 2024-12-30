@@ -19,10 +19,10 @@ clean:
 	rm -f $(BUILDDIR)/*.o
 
 start: $(BUILD_F)
-	$(CC) -o $(PROGRAM) $^
+	$(CC) -o $(PROGRAM) $^ -L -lbshell includes/bshell/lib/libbshell.so
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) -c -o $@ $^ -Wall -g -std=gnu99
+	$(CC) -c -o $@ $^ -Wall -g -std=gnu99 -I./includes/bshell/src/
 
 run:
 	./$(PROGRAM)
